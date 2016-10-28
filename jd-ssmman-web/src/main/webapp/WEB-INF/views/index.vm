@@ -17,14 +17,9 @@
 </frameset>
 <noframes>
     <body>
+
+            欢迎您来到一元抢宝后台管理系统!
+
     </body>
 </noframes>
 </html>
-##
-###define($content)
-##    <div style="height:300px; width:98%; text-align:center">
-##        <a href="/hello">hello, this is a welcome-page</a>
-##        <a href="/getUser">Get User</a>
-##        <hr />
-##    </div>
-###end

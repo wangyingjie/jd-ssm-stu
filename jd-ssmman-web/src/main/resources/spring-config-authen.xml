@@ -16,8 +16,6 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-
-
     <!--SSM拦截器-->
     <bean id="ssmInterceptor" class="com.jd.ssmman.web.interceptor.SSMInterceptor"/>
 

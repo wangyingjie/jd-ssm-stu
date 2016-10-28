@@ -2,9 +2,6 @@ package com.jd.ssmman.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * User: ckm
@@ -12,14 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Time: 19:11
  */
 
-@Controller
-@RequestMapping("/mantest")
+//@Controller
+//@RequestMapping("/mantest")
 public class ManTestController {
 
     private final static Logger log = LoggerFactory.getLogger(ManTestController.class);
 
-    @ResponseBody
-    @RequestMapping(value = "/test")
+    //@ResponseBody
+    //@RequestMapping(value = "/test")
     public String insertUserCode(Long orderId) {
         orderId = 1710003002000012301l;
         try {

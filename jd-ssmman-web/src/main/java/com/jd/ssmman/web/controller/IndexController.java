@@ -1,9 +1,9 @@
 package com.jd.ssmman.web.controller;
 
 
-
 import com.jd.ssmman.web.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,5 +15,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class IndexController extends BaseController {
 
+
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
+    
 
 }
