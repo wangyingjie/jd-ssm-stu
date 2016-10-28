@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="TreasureUser">
+    <resultMap id="BaseResultMap" type="TreasureUser">
+        <id column="user_id" property="userId"/>
+        <result column="user_pin" property="userPin"/>
+        <result column="nickname" property="nickname"/>
+        <result column="mobile" property="mobile"/>
+        <result column="photo_url" property="photoUrl"/>
+        <result column="flower_num" property="flowerNum"/>
+        <result column="give_num" property="giveNum"/>
+        <result column="gain_num" property="gainNum"/>
+        <result column="status" property="status"/>
+        <result column="yn" property="yn"/>
+        <result column="modified" property="modified"/>
+        <result column="created" property="created"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    user_id, user_pin, nickname, mobile, photo_url, flower_num, give_num, gain_num, status,
+    yn, modified, created
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from treasure_user
+        where user_id = #{userId,jdbcType=BIGINT} and yn = 1
+    </select>
+
+    <select id="getByUserPins" resultMap="BaseResultMap" parameterType="java.util.List">
+        select
+        user_id,flower_num
+        from treasure_user
+        where
+        user_pin in
+        <foreach collection="list" item="userPin" open="(" close=")" separator=",">
+            #{userPin}
+        </foreach>
+        and yn = 1
+    </select>
+
+
+    <select id="selectByUserPin" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from treasure_user
+        where user_pin = #{userPin} and yn = 1
+    </select>
+
+    <select id="selectUserById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from treasure_user
+        where user_id = #{userId} and yn = 1
+    </select>
+
+    <insert id="insert" parameterType="TreasureUser">
+    insert into treasure_user (user_id, user_pin, nickname,
+      mobile, photo_url, flower_num,
+      give_num, gain_num, status,
+      yn, modified, created
+      )
+    values (#{userId,jdbcType=BIGINT}, #{userPin}, #{nickname},
+      #{mobile}, #{photoUrl}, #{flowerNum},
+      #{giveNum}, #{gainNum}, #{status},
+      1, #{modified}, now()
+      )
+  </insert>
+
+    <update id="updateUserById" parameterType="map">
+    update treasure_user
+    set
+      mobile = #{mobile}
+    where user_id = #{userId} and yn = 1
+  </update>
+
+    <update id="updateMobileByUserPin" parameterType="map">
+        update treasure_user
+        set
+        mobile = #{mobile}
+        where user_pin = #{userPin} and yn = 1
+    </update>
+
+    <!-- 更新红花个数 -->
+    <update id="updateFlowerNum" parameterType="java.util.HashMap">
+        update treasure_user
+        set
+        flower_num = flower_num + #{addNum}
+        where user_pin = #{userPin}
+            AND
+            flower_num = #{flowerNum}
+            AND
+            status = 1
+            AND
+            yn = 1
+    </update>
+
+
+    <!-- 更新送花用户红花个数 -->
+    <update id="updateSendUserFlowerNum" parameterType="java.util.HashMap">
+        update treasure_user
+        set
+        flower_num = flower_num - #{addNum},
+        give_num=give_num+#{addNum}
+        <where>
+            user_pin = #{userPin}
+            AND
+            flower_num >= #{addNum}
+            AND
+            status = 1
+            AND
+            yn = 1
+        </where>
+    </update>
+
+    <!-- 更新收花用户红花个数 -->
+    <update id="updateRevUserFlowerNum" parameterType="java.util.HashMap">
+        update treasure_user
+        set
+        flower_num = flower_num+#{addNum},
+        gain_num=gain_num+#{addNum}
+        <where>
+            user_pin = #{userPin}
+            AND
+            status = 1
+            AND
+            yn = 1
+        </where>
+    </update>
+
+    <select id="getUserList" resultMap="BaseResultMap" parameterType="BaseQuery">
+        select
+       user_id,user_pin
+        from treasure_user
+       where user_id>= #{startPosition} and
+          yn = 1
+        order by user_id
+        limit #{pageSize}
+    </select>
+
+
+    <!--更新成取消-->
+    <update id="batchUpdateUser" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index"   separator=";">
+        update treasure_user
+        set nickname = #{item.nickname}
+        where user_id = #{item.userId}     and       yn = 1
+        </foreach>
+    </update>
+
+</mapper>
