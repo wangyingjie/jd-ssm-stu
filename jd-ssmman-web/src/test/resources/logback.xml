@@ -89,7 +89,7 @@
         <appender-ref ref="${treasureman.log.jmq.erp.appender}"/>
     </logger>
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="${treasureman.log.root.appender}"/>
         <appender-ref ref="all-error"/>
     </root>
