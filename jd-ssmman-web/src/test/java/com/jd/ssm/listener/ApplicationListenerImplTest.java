@@ -17,7 +17,6 @@ public class ApplicationListenerImplTest {
 
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("test/spring-config-listener.xml");
         ApplicationEventImpl event = new ApplicationEventImpl("wangyingjie", "Hello");
-
         context.publishEvent(event);
     }
 
