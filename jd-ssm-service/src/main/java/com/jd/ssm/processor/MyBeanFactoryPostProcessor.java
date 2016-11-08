@@ -13,7 +13,7 @@ import org.springframework.util.StringValueResolver;
  * <p>
  * 自定义 BeanFactoryPostProcessor
  */
-@Service
+@Service("myBeanFactoryPostProcsssor")
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
 
@@ -33,7 +33,12 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
                 @Override
                 public String resolveStringValue(String strVal) {
 
+                    System.out.println("strVal======================>" + strVal);
+
                     if (strVal.contains("shit")) {
+
+                        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
                         return "shit*****";
                     }
                     return strVal;

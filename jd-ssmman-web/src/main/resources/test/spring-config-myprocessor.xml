@@ -18,4 +18,8 @@
         </property>
     </bean>
 
+
+    <bean id="simplePostProcessor2" class="com.jd.ssm.processor.SimplePostProcessor">
+        <property name="value" value="shit ni mei"/>
+    </bean>
 </beans>
