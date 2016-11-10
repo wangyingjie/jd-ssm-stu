@@ -14,7 +14,7 @@ public class CycleDependency {
     public void testCycleDI(){
 
         ApplicationContext context = new ClassPathXmlApplicationContext("test/spring-config-example.xml");
-        CycleService1 cycleService1 = context.getBean("cycleService1", CycleService1.class);
+        com.jd.ssm.example.CycleService1 cycleService1 = context.getBean("cycleService1", com.jd.ssm.example.CycleService1.class);
         cycleService1.method1();
     }
 }

@@ -22,6 +22,7 @@ public class AopServiceBeanTest {
 
     /**
      * 测试 AopServiceBean 对应的注解方式实现的Aop
+     *
      * @see com.jd.ssm.aop.test.AopServiceBean
      */
     @Test
@@ -35,6 +36,7 @@ public class AopServiceBeanTest {
 
     /**
      * 测试 UserManagerImpl 对应的Xml方式实现的Aop
+     *
      * @see com.jd.ssm.aop.user.impl.UserManagerImpl
      */
     @Test
@@ -55,9 +57,9 @@ public class AopServiceBeanTest {
     }
 
 
-
     /**
      * 测试 MethodBeforeAdvice 方法执行前代理
+     *
      * @see com.jd.ssm.aop.user.impl.UserManagerImpl
      */
     @Test
@@ -84,6 +86,7 @@ public class AopServiceBeanTest {
 
     /**
      * 测试 MethodBeforeAdvice 方法执行前代理
+     *
      * @see com.jd.ssm.aop.user.impl.UserManagerImpl
      */
     @Test
@@ -104,8 +107,7 @@ public class AopServiceBeanTest {
 
         //5、获取到被代理对象
         Waiter proxyWaiter = (Waiter) proxy.getObject();
-        proxyWaiter.greetTo("wang wu ");
+        proxyWaiter.service("wang wu ");
     }
-
 
 }
