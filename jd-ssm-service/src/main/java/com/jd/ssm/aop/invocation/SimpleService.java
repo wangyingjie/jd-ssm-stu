@@ -20,7 +20,20 @@ public class SimpleService {
 
     public SimpleService(SimpleHandler simpleHandler){
         this.simpleHandler = simpleHandler;
-        this.simpleHandlerProxy = (SimpleHandler) newProxyInstance(SimpleHandler.class.getClassLoader(), new Class[]{SimpleHandler.class}, new SimpleInvocationHandler());
+
+        // 注意：获取目标对象的接口  通用性更好
+        Class<?>[] interfaces = simpleHandler.getClass().getInterfaces();
+
+        //this.simpleHandlerProxy = (SimpleHandler) newProxyInstance(SimpleHandler.class.getClassLoader(), new Class[]{SimpleHandler.class}, new SimpleInvocationHandler());
+
+        //classLoader 的通用获取方式
+        //this.simpleHandlerProxy = (SimpleHandler) newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[]{SimpleHandler.class}, new SimpleInvocationHandler());
+
+        this.simpleHandlerProxy = getProxy(interfaces);
+    }
+
+    private SimpleHandler getProxy(Class<?>[] interfaces) {
+        return (SimpleHandler) newProxyInstance(SimpleHandler.class.getClassLoader(), interfaces, new SimpleInvocationHandler());
     }
 
 
