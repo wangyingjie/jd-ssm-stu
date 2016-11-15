@@ -16,7 +16,7 @@
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
-    <bean id="stringHttpMessageConverter" class="com.jd.ssm.message.UTF8StringHttpMessageConverter"/>
+    <bean id="stringHttpMessageConverter" class="com.jd.ssm.user.UTF8StringHttpMessageConverter"/>
 
 
     <!--请求转换适配器-->

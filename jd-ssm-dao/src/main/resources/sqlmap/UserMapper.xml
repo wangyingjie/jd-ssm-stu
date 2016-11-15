@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="User">
+    <resultMap id="BaseResultMap" type="User">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_name, age, mobile, sex
+    </sql>
+
+    <select id="getAllUsers" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+    </select>
+
+    <insert id="save" parameterType="User">
+        insert into t_user
+        (
+        <include refid="Base_Column_List"/>
+        )
+        values (#{id,jdbcType=BIGINT}, #{userName}, #{age}, #{sex} )
+    </insert>
+
+
+</mapper>
