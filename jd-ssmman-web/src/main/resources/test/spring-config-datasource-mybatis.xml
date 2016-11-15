@@ -41,15 +41,17 @@
         <property name="name" value="jdtreasure_master"/>
     </bean>
 
-    <!--<tx:annotation-driven />
+    <!--<tx:annotation-driven />`
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>-->
 
-    <!--<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name=""
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:test/spring-config-datasource-mybatis.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
         <property name="mapperInterface" value="com.jd.ssm.user.mapper.UserMapper"/>
-
-
-    </bean>-->
+    </bean>
     
 </beans>
