@@ -26,6 +26,7 @@ public class UserMapperTest {
 
             mapper.save(user);
 
+            // todo 一定要提交否则数据不入库
             sqlSession.commit();
 
         } catch (Exception e) {
@@ -39,7 +40,7 @@ public class UserMapperTest {
 
     private User getUser() {
         User user = new User();
-        user.setUserName("mybatis");
+        user.setUserName("mybatis2");
         user.setAge(100);
         user.setSex("x");
         return user;
