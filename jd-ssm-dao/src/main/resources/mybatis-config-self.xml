@@ -32,8 +32,8 @@
         <!--特殊的 javaType 与 jdbcType 的映射关系-->
     </typeHandlers>
 
-    <!-- mybatis 结合Spring 数据源datasource 将由Spring来管理 -->
-    <!--<environments default="development">
+    <!-- 创建数据库链接 -->
+    <environments default="development">
         <environment id="development">
             <transactionManager type="jdbc"></transactionManager>
             <dataSource type="POOLED">
@@ -43,7 +43,7 @@
                 <property name="password" value="jdlottery"/>
             </dataSource>
         </environment>
-    </environments>-->
+    </environments>
 
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
