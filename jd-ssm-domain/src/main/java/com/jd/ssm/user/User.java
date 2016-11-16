@@ -10,6 +10,9 @@ public class User {
     private int age;
     private String sex;
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }
