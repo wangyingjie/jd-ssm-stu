@@ -21,7 +21,7 @@ public class UserManagerImpl implements UserManager {
         userDao.save(user);
 
         //测试数据库事务，抛异常数据库将回滚不入库
-        throw new RuntimeException("抛异常数据库将回滚不入库");
+        //throw new RuntimeException("抛异常数据库将回滚不入库");
     }
 
     public void setUserDao(UserDao userDao) {
