@@ -2,7 +2,9 @@ package com.jd;
 
 import com.google.common.collect.Maps;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Properties;
 
 /**
  * Created by wangyingjie1 on 2016/10/28.
@@ -31,5 +33,19 @@ public class ThisTest {
 
         ThisTest tt = new ThisTest();
         tt.cool();
+
+        readPropertiesFile();
+
+    }
+
+    private static void readPropertiesFile() {
+        try {
+            Properties properties = new Properties();
+            properties.load(ThisTest.class.getClassLoader().getResourceAsStream("velocity.properties"));
+
+            System.out.println(properties);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
