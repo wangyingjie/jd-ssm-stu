@@ -10,6 +10,8 @@ public interface UserDao {
 
     int save(User user);
 
+    int update(long id);
+
     List<User> getAllUsers();
 
     //获取满足条件的 数据库Id列的所有值，只支持单列的查询操作

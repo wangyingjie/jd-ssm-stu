@@ -38,6 +38,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public int update(long id) {
+
+        String sql = "update t_user set user_name='tx test name' where id=?";
+
+        return jdbcTemplate.update(sql, id);
+    }
+
+
+    @Override
     public List<User> getAllUsers() {
 
         String sql = "select id, user_name, age, sex  from  t_user";
