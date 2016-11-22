@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- 服务端 -->
+    <bean id="helloRmiService" class="com.jd.ssm.rmi.impl.HelloRmiServiceImpl"/>
+
+    <bean id="centerService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://127.0.0.1/remote/orderCenter" />
+        <property name="serviceInterface" value="com.jd.ssm.rmi.HelloRmiService" />
+        <property name="overloadEnabled" value="false" />
+    </bean>
+
+
+</beans>

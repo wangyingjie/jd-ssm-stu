@@ -13,9 +13,9 @@
         <param-value>classpath:spring-config.xml</param-value>
     </context-param>
 
-    <!--<listener>
+    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>-->
+    </listener>
 
 
     <!--属于 spring mvc 容器-->
@@ -32,6 +32,8 @@
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>-->
+
+
 
     <!--<filter>
         <filter-name>CharacterEncodingFilter</filter-name>

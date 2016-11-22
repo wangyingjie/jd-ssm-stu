@@ -9,14 +9,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class RmiServerTest {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/test/spring-config-rmi-server.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("test/spring-config-rmi-hello-server.xml");
 
     }
 
 
     @Test
     public void testRmiServer() {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/test/spring-config-rmi-server.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("test/spring-config-rmi-hello-server.xml");
         //AopServiceBean aopService = context.getBean("aopService", AopServiceBean.class);
 
     }

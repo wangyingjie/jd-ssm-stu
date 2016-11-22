@@ -9,7 +9,7 @@ public class HelloRmiServiceImpl implements HelloRmiService {
 
     @Override
     public int getAdd(int a, int b) {
-
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         return a + b;
     }
 }

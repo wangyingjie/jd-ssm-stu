@@ -12,8 +12,9 @@
         <property name="service" ref="helloRmiService"/>
         <property name="serviceName" value="helloRmi"/>
         <property name="serviceInterface" value="com.jd.ssm.rmi.HelloRmiService"/>
-        <property name="registryPort" value="7777"/>
+        <!--<property name="registryHost" value="127.0.0.1"/>-->
+        <property name="registryPort" value="8899"/>
     </bean>
 
 
- </beans>
+</beans>

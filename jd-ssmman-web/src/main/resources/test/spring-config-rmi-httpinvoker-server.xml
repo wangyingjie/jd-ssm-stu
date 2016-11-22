@@ -4,11 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <!-- 客户端 -->
-    <bean id="helloRmi" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi:/192.168.0.101:9999/helloRmi"/>
+    <!-- 服务端 -->
+    <bean id="helloRmiService" class="com.jd.ssm.rmi.impl.HelloRmiServiceImpl"/>
+
+    <bean name="/hit" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter" >
+        <property name="service" ref="helloRmiService" />
         <property name="serviceInterface" value="com.jd.ssm.rmi.HelloRmiService"/>
     </bean>
 
 
- </beans>
+</beans>
