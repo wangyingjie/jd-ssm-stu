@@ -41,7 +41,7 @@
     </mvc:annotation-driven>
 
 
-    <!--&lt;!&ndash; 配置velocity引擎 &ndash;&gt;-->
+    <!-- 配置velocity引擎 -->
     <bean id="velocityConfigurer"
           class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <!-- 模板存放的路径 -->
