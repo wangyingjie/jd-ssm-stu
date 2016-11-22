@@ -93,4 +93,9 @@
         <appender-ref ref="${treasureman.log.root.appender}"/>
         <appender-ref ref="all-error"/>
     </root>
+
+    <logger name="org.springframework.beans.factory.xml">
+        <level value="all" />
+    </logger>
+
 </configuration>
