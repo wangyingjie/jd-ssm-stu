@@ -11,7 +11,7 @@ import java.util.Properties;
  *
  * 通过流的形式读取项目 resource 测试
  */
-public class ReadFileTest1 {
+public class ReadConfigFile {
 
     public static void main(String[] args) {
 
@@ -23,7 +23,7 @@ public class ReadFileTest1 {
     private static void readPropertiesFile() {
         try {
             Properties properties = new Properties();
-            properties.load(ReadFileTest1.class.getClassLoader().getResourceAsStream("velocity.properties"));
+            properties.load(ReadConfigFile.class.getClassLoader().getResourceAsStream("velocity.properties"));
 
             System.out.println(properties);
         } catch (IOException e) {
@@ -54,7 +54,7 @@ public class ReadFileTest1 {
         try {
 
             //todo  此处使用了spring的api，但是未读取到数据，该问题有待查找根本原因
-            ClassPathResource resource = new ClassPathResource("file1.properties", ReadFileTest1.class);
+            ClassPathResource resource = new ClassPathResource("file1.properties", ReadConfigFile.class);
             Properties properties1 = PropertiesLoaderUtils.loadProperties(resource);
             System.out.println(properties1);
 
