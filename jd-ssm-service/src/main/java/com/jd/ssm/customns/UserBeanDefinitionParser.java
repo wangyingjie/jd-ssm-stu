@@ -2,6 +2,7 @@ package com.jd.ssm.customns;
 
 import com.jd.ssm.user.User;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
+import org.springframework.beans.factory.parsing.BeanComponentDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
@@ -95,4 +96,20 @@ public class UserBeanDefinitionParser extends AbstractSingleBeanDefinitionParser
 
         return "userBeanTest";
     }
+
+    /**
+     * Hook method called after the primary parsing of a
+     * {@link BeanComponentDefinition} but before the
+     * {@link BeanComponentDefinition} has been registered with a
+     * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}.
+     * <p>Derived classes can override this method to supply any custom logic that
+     * is to be executed after all the parsing is finished.
+     * <p>The default implementation is a no-op.
+     * @param componentDefinition the {@link BeanComponentDefinition} that is to be processed
+     *
+     *  解析后的后置处理器
+     */
+    protected void postProcessComponentDefinition(BeanComponentDefinition componentDefinition) {
+    }
+
 }
