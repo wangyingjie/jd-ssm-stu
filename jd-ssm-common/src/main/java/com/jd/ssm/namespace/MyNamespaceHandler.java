@@ -9,6 +9,6 @@ public class MyNamespaceHandler extends NamespaceHandlerSupport {
 
     @Override
     public void init() {
-        registerBeanDefinitionParser("pepole", new PeopleBeanDefinitionParser());
+        registerBeanDefinitionParser("people", new PeopleBeanDefinitionParser());
     }
 }

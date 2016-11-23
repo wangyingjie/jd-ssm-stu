@@ -1,8 +1,11 @@
 package com.jd.ssm.customns;
 
 import com.jd.ssm.user.User;
+import org.springframework.beans.factory.BeanDefinitionStoreException;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
+import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
@@ -38,6 +41,7 @@ public class UserBeanDefinitionParser extends AbstractSingleBeanDefinitionParser
      */
     protected void doParse(Element element, BeanDefinitionBuilder bean) {
 
+        String beanId = element.getAttribute("beanId");
         String id = element.getAttribute("id");
         String userName = element.getAttribute("userName");
         String sex = element.getAttribute("sex");
@@ -49,11 +53,46 @@ public class UserBeanDefinitionParser extends AbstractSingleBeanDefinitionParser
         if (StringUtils.hasText(userName)){
             bean.addPropertyValue("userName", userName);
         }
+        if (StringUtils.hasText(beanId)){
+            bean.addPropertyValue("beanId", beanId);
+        }
         if (StringUtils.hasText(userName)){
             bean.addPropertyValue("sex", sex);
         }
         if (StringUtils.hasText(userName)){
             bean.addPropertyValue("age", age);
         }
+    }
+
+
+    /**
+     * Resolve the ID for the supplied .
+     * <p>When using {@link #shouldGenerateId generation}, a name is generated automatically.
+     * Otherwise, the ID is extracted from the "id" attribute, potentially with a
+     * {@link #shouldGenerateIdAsFallback() fallback} to a generated id.
+     * @param element the element that the bean definition has been built from
+     * @param definition the bean definition to be registered
+     * @param parserContext the object encapsulating the current state of the parsing process;
+     * provides access to a {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
+     * @return the resolved id
+     * @throws BeanDefinitionStoreException if no unique name could be generated
+     * for the given bean definition
+     */
+    @Override
+    protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) throws
+            BeanDefinitionStoreException {
+        String id = element.getAttribute(ID_ATTRIBUTE);
+        if (StringUtils.hasText(id)) {
+            return super.resolveId(element, definition, parserContext);
+        } else {
+            return this.getDefaultId();
+        }
+    }
+
+    private String getDefaultId() {
+
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+        return "userBeanTest";
     }
 }

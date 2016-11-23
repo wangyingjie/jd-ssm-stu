@@ -7,6 +7,6 @@
         http://yingjie.jd.com/schema/user
 	    http://yingjie.jd.com/schema/user/user.xsd">
 
-    <user:user  id="userBeanTest" userName="zhangsan" age="111" sex="3333"/>
+    <user:user beanId="100000" userName="zhangsan" age="111" sex="3333"/>
 
 </beans>

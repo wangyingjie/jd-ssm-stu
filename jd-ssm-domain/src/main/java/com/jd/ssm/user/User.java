@@ -5,6 +5,7 @@ package com.jd.ssm.user;
  */
 public class User {
 
+    private String beanId;
     private int id;
     private String userName;
     private int age;
@@ -43,6 +44,14 @@ public class User {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getBeanId() {
+        return beanId;
+    }
+
+    public void setBeanId(String beanId) {
+        this.beanId = beanId;
     }
 
     // TODO: 2016/11/15  Builder 模式的关键是本类的内部包含一个静态 public static 的内部类
@@ -88,7 +97,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "beanId='" + beanId + '\'' +
+                ", id=" + id +
                 ", userName='" + userName + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
