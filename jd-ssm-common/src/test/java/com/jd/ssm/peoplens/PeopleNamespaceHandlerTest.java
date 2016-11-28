@@ -45,15 +45,15 @@ public class PeopleNamespaceHandlerTest implements PeopleNamespaceHandler {
     }
 
     public void studySmartKey(){
+        // F12  快捷键视图切换
         // Alt + /  复制前一个单词（很有意思的一个快捷键）
         // Alt + Shit + /  复制后一个单词
+        // Alt + 菜单名首字母会有惊喜
         // Ctrl + O 重写父类的方法
-        // F12  快捷键视图切换
+        // Ctrl + I   实现接口中的方法
         // Ctrl + Alt + Shift + T  为当前类提炼接口
         // Ctrl + Alt + c/v/p/f/m
-        // Ctrl + I   实现接口中的方法
         // Ctrl + J   代码模板提示快捷键
-        // Alt + 菜单名首字母会有惊喜
 
     }
 
