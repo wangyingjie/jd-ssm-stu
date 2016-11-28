@@ -1,0 +1,404 @@
+#macro(showSimpleError)
+    #if(!$!actionErrors.empty)
+        #foreach($str in $actionErrors)
+            $!str
+            #break
+        #end
+    #end
+#end
+
+#macro(taskView $Scheduler $model)
+<td>
+    #if($Scheduler.isStart==1)
+        <span style="color:green">启动</span>
+    #elseif($Scheduler.isStart==0)
+        <span style="color:red">停止</span>
+    #end
+</td>
+<td>
+    #if($Scheduler.isStart==1)
+        <a href="$homeModule.forPath("/worker/handler?status=stop&model=$model&jobTask=$Scheduler.key").build()">停止</a>
+    #elseif($Scheduler.isStart==0)
+        <a href="$homeModule.forPath("/worker/handler?status=start&model=$model&jobTask=$Scheduler.key").build()">启动</a>
+    #end
+</td>
+<td>
+    <a href="$homeModule.forPath("/worker/once?quartzBeanId=$Scheduler.triggerName&type=worker&model=$model").build()"
+       onclick="return checkConfirm();">执行</a>
+</td>
+<td>
+    $Scheduler.cronExpression
+</td>
+<td>
+    $Scheduler.key：$Scheduler.triggerName
+</td>
+<td>默认不随容器一同启动</td>
+#end
+
+#* @vtlvariable name="page" type="com.jd.common.util.base.PaginatedArrayList" *#
+#macro (showPage $module $page)
+    #if($page)
+        #set($pagePos = 2) ##当前页的尾巴长度
+    <em>共$!{page.totalItem}条</em>
+    <em>$!{page.pageSize}条/页</em>
+    <em>共$!{page.totalPage}页</em>
+        #if($!page.index>1)
+        <em>当前第$!{page.index}页</em>
+        #end
+
+        #if($page.previousPageAvailable) ##如果能向上翻页
+        <a class="prev" href="$module.put("pageIndex",1).build()">首页</a>
+        <a class="prev" href="$module.put("pageIndex",$!{page.previousPage}).build()">上一页<b></b></a>
+        #else
+        <span class="prev-disabled">首页</span>
+        <span class="prev-disabled">上一页<b></b></span>
+        #end
+
+        #foreach($i in [$pagePos..1]) ##增加前面的尾巴
+            #if($!page.index - $i > 1)
+                #set($pageIndex= $!page.index - $i)
+            <a href="$module.put("pageIndex",$pageIndex).build()">$pageIndex</a>
+            #end
+        #end
+    <a class="current">$!page.index</a> ##显示当前页号
+        #foreach($i in [1..$pagePos]) ##增加后面的尾巴
+            #if($!page.totalPage - $!page.index - $i > 0)
+                #set($pageIndex= $!page.index + $!i)
+            <a href="$module.put("pageIndex",$pageIndex).build()">$pageIndex</a>
+            #end
+        #end
+        #if($!page.totalPage - $!page.index > $pagePos+1) <span class="text">...</span> #end ##显示后面的省略号
+        #if($page.nextPageAvailable) ##显示后面的页
+        <a class="next" href="$module.put("pageIndex",$!{page.nextPage}).build()">下一页<b></b></a>
+        <a class="next" href="$module.put("pageIndex",$!{page.totalPage}).build()">末页</a>
+        #else
+        <span class="next-disabled">下一页<b></b></span>
+        <span class="next-disabled">末页</span>
+        #end
+    #end
+#end
+
+#* 支付类型 *#
+#macro(showPayType $selectedValue)
+    #foreach($i in [1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,32,33,34,35,64,65])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showPayTypeName($i)</option>
+    #end
+#end
+
+#macro(showPayTypeName $status)
+    #if($status==1) 在线支付
+    #elseif($status==2) 余额支付
+    #elseif($status==3) 在线+余额
+    #elseif($status==4) 全品京券
+    #elseif($status==5) 在线+全品京券
+    #elseif($status==6) 余额+全品京券
+    #elseif($status==7) 在线+余额+全品京券
+    #elseif($status==8) 全品东券
+    #elseif($status==9) 在线+全品东券
+    #elseif($status==10) 余额+全品东券
+    #elseif($status==11) 在线+余额+全品东券
+    #elseif($status==16) 限品京券
+    #elseif($status==17) 在线+限品京券
+    #elseif($status==18) 余额+限品京券
+    #elseif($status==19) 在线+余额+限品京券
+    #elseif($status==32) 限品东券
+    #elseif($status==33) 在线+限品东券
+    #elseif($status==34) 余额+限品东券
+    #elseif($status==35) 在线+余额+限品东券
+    #elseif($status==64) 京豆支付
+    #elseif($status==65) 在线+京豆
+    #end
+#end
+
+#* 订单来源 *#
+#macro(showOrderSource $selectedValue)
+    #foreach($i in [1,2,3,4,5])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showOrderSourceName($i)</option>
+    #end
+#end
+
+#macro(showOrderSourceName $status)
+    #if($status==1) PC
+    #elseif($status==2) 移动端APP
+    #elseif($status==3) 移动端M版
+    #elseif($status==4)手Q端
+    #elseif($status==5)微信端
+    #end
+#end
+
+#* 渠道 *#
+#macro(showDataChannel $value)
+    #foreach($i in $avalidDataChannels)#*[-1,1,2,4,8]*#
+        #if( $value==-1)
+        <input id="dataChannels$i" type="checkbox" checked="checked" name="dataChannels"
+               onclick="onSelectDataChannel(this)"
+               value="$i"/><label for="dataChannels$i">#showDataChannelName($i)</label>
+        #else
+            #if($!bitwise.checkDataChannel($value,$i))
+            <input id="dataChannels$i" type="checkbox" name="dataChannels" checked="checked"
+                   onclick="onSelectDataChannel(this)"
+                   value="$i"/><label for="dataChannels$i">#showDataChannelName($i)</label>
+            #else
+            <input id="dataChannels$i" type="checkbox" name="dataChannels" onclick="onSelectDataChannel(this)"
+                   value="$i"/><label for="dataChannels$i">#showDataChannelName($i)</label>
+            #end
+        #end
+
+    #end
+<input type="hidden" id="dataChannel" name="dataChannel"/>
+#end
+
+#macro(showDataChannelName $status)
+    #if($status==-1) 全部
+    #elseif($status==1) PC
+    #elseif($status==2) 移动端
+    #elseif($status==4) 微信
+    #elseif($status==8) 手q
+    #end
+#end
+
+#* 活动类型 *#
+#macro(activityTypeStatus $selectedValue)
+    #foreach($i in [1,2,3])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#activityTypeName($i)</option>
+    #end
+#end
+
+#macro(activityTypeName $status)
+    #if($status==1) 普通
+    #elseif($status==2) 地推
+    #elseif($status==3) 一元免单
+    #end
+#end
+
+#* 中奖状态 *#
+#macro(showAwardStatus $selectedValue)
+    #foreach($i in [0,1,2])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showAwardStatusName($i)</option>
+    #end
+#end
+
+#macro(showAwardStatusName $status)
+    #if($status==0) 未中奖
+    #elseif($status==1) 已中奖
+    #elseif($status==2) 中奖取消
+    #end
+#end
+
+
+#* 夺宝期状态 *#
+#macro(issueStatus $selectedValue)
+    #foreach($i in [1,2,3,4,5,6,50])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#issueStatusName($i)</option>
+    #end
+#end
+
+#macro(issueStatusName $status)
+    #if($status==1) 已开期
+    #elseif($status==2) 已结期（待算奖）
+    #elseif($status==3) 已算奖（待确认收货地址）
+    #elseif($status==4) 待商家发货
+    #elseif($status==5) 待确认收货
+    #elseif($status==6) 已确认收货
+    #elseif($status==50) 未结期退款
+    #end
+#end
+#* 销售状态 *#
+#macro(saleStatus $selectedValue)
+    #foreach($i in [-1,0,1,2,3])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#saleStatusName($i)</option>
+    #end
+#end
+
+#macro(saleStatusName $status)
+    #if($status==-1) 全部
+    #elseif($status==0) 停售
+    #elseif($status==1) 在售
+    #elseif($status==2) 紧急停售
+    #elseif($status==3) 废除
+    #end
+#end
+
+#抢宝分类#
+#macro(itemType $selectedValue)
+    #foreach($i in [1,2])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#itemTypeName($i)</option>
+    #end
+#end
+
+#macro(itemTypeName $status)
+    #if($status==1) 实物
+    #elseif($status==2) 充值卡
+    #end
+#end
+#* 支付状态 *#
+#macro(showPayStatus $selectedValue)
+    #foreach($i in [0,1,40,41,2,3,4,50,51])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showPayStatusName($i)</option>
+    #end
+#end
+
+#macro(showPayStatusName $status)
+    #if($status==0) 未支付
+    #elseif($status==1) 已支付
+    #elseif($status==40) 支付异常
+    #elseif($status==41) 支付失败
+    #elseif($status==2) 待申请退款
+    #elseif($status==3) 退款中
+    #elseif($status==4) 退款成功
+    #elseif($status==50) 退款驳回
+    #elseif($status==51) 退款失败
+    #end
+#end
+
+#* 支付状态 *#
+#macro(showOrderStatus $selectedValue)
+    #foreach($i in [0,1,2,3,10,11])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showOrderStatusName($i)</option>
+    #end
+#end
+
+#macro(showOrderStatusName $status)
+    #if($status==0) 未参与
+    #elseif($status==1) 待分配抢宝号
+    #elseif($status==2) 参与成功
+    #elseif($status==3) 参与失败
+    #elseif($status==10) 已完成
+    #elseif($status==11) 已取消
+    #end
+#end
+
+#* 供应商级别 *#
+#macro(showAgentLevel $selectedValue)
+    #set($arr = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y",
+        "Z"])
+    #foreach($i in $arr)
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >${i}级</option>
+    #end
+#end
+
+#* 派奖状态 *#
+#macro(showPrizeStatus $selectedValue)
+    #foreach($i in [4,5,6])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showPrizeStatusName($i)</option>
+    #end
+#end
+
+#macro(showPrizeStatusName $status)
+    #if($status==4) 待商家发货
+    #elseif($status==5) 待确认收货
+    #elseif($status==6) 已确认收货
+    #end
+#end
+
+#macro(showDeliverStatusName $status)
+    #if($status==0) 未妥投
+    #elseif($status==1) 已妥投
+    #end
+#end
+
+#macro(showItemTypeName $status)
+    #if($status==1) 实物
+    #elseif($status==2) 虚拟商品
+    #end
+#end
+
+#macro(showReceiverTypeName $status)
+    #if($status==1) 用户确认
+    #elseif($status==2) 系统确认
+    #end
+#end
+
+#* 快递公司 *#
+#macro(showExpressOrg $selectedValue)
+    #foreach($i in [1,467,463,470,1499,1327])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showExpressOrgName($i)</option>
+    #end
+#end
+
+#macro(showExpressOrgName $status)
+    #if($status==463) 圆通快递
+    #elseif($status==464) 中通快递
+    #elseif($status==465) 邮政EMS
+    #elseif($status==466) 中铁快运
+    #elseif($status==467) 顺丰快递
+    #elseif($status==470) 申通快递
+    #elseif($status==1327) 韵达快递
+    #elseif($status==1409) 宅急送
+    #elseif($status==1499) 中通速递
+    #elseif($status==1747) 优速物流
+    #elseif($status==2009) 天天快递有限公司
+    #elseif($status==2016) 北京全峰快递有限责任公司
+    #elseif($status==2087) 京东快递
+    #elseif($status==2094) 快捷速递
+    #elseif($status==2170) 中国邮政集团公司-国内小包
+    #elseif($status==2171) 中国邮政集团公司-挂号信
+    #elseif($status==2465) 中国邮政集团公司-国通快递
+    #elseif($status==2466) 汇强快递
+    #elseif($status==5419) 中铁物流
+    #end
+#end
+
+#* 表格列元素<td>限制显示内容长度 *#
+#macro(showTDLimitLength $value $length)
+    #if(!$value)
+    <td></td>
+    #elseif($value && $value.length() > $length)
+    <td title="$value">$value.substring(0,$length)..</td>
+    #else
+    <td title="$value">$value</td>
+    #end
+#end
+
+#* 短信（微信）发送状态 *#
+#macro(showSmsStatus $selectedValue)
+    #foreach($i in [1,2,3])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showSmsStatusName($i)</option>
+    #end
+#end
+
+#macro(showSmsStatusName $status)
+    #if($status==1) 未发送
+    #elseif($status==2) 发送成功
+    #elseif($status==3) 发送异常
+    #end
+#end
+
+#* 数据发送类型 *#
+#macro(showDataType $selectedValue)
+    #foreach($i in [1,2,3])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showDataTypeName($i)</option>
+    #end
+#end
+
+#macro(showDataTypeName $status)
+    #if($status==1) 短信
+    #elseif($status==2) 微信
+    #elseif($status==3)站内信
+    #end
+#end
+
+#* 业务对象类型 *#
+#macro(showBusinessType $selectedValue)
+    #foreach($i in [1,2,3])
+    <option value="$i" #if($selectedValue==$i)selected="selected" #end >#showBusinessTypeName($i)</option>
+    #end
+#end
+
+#macro(showBusinessTypeName $status)
+    #if($status==1) 订单号
+    #elseif($status==2) 抢宝项ID
+    #elseif($status==3) 抢宝期ID
+    #end
+#end
+
+#macro(showMessageTypeName $status)
+    #if($status==1) 提醒中奖用户填写收货地址
+    #elseif($status==2) 提醒中奖用户商家已发货
+    #elseif($status==3) 提醒中奖参与失败退款
+    #elseif($status==4) 商品到期未满员退款
+    #elseif($status==5) 虚拟中奖短信
+    #elseif($status==6) 库存报警短信
+    #elseif($status==7) 验证码短信
+    #end
+#end

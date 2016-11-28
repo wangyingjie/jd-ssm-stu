@@ -6,9 +6,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>jd-ssmman-web</artifactId>
+    <artifactId>jd-ssm-mvc-web</artifactId>
     <packaging>war</packaging>
-    <name>jd-ssmman-web</name>
+    <name>jd-ssm-mvc-web</name>
 
     <properties>
         <erp.sso.version>1.1.1-SNAPSHOT</erp.sso.version>
@@ -53,10 +53,21 @@
             <artifactId>tomcat-servlet-api</artifactId>
             <version>7.0.37</version>
         </dependency>-->
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>7.0.37</version>
+        </dependency>-->
     </dependencies>
 
     <build>
-        <finalName>jd-ssmman-web</finalName>
+        <finalName>jd-ssm-mvc-web</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
