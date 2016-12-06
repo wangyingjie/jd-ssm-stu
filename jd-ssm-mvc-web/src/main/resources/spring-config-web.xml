@@ -83,6 +83,7 @@
         <property name="layoutUrl" value="layout/default.vm"/>
     </bean>
 
+    <!--// Negotiating [nɪ'goʃɪ,etɪŋ]  v. 谈判（negotiate的ing形式）；磋商-->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
         <property name="viewResolvers">

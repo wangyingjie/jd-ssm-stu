@@ -24,5 +24,6 @@ public class HttpServletBean {
     }
 
     protected void initSerBean() {
+
     }
 }

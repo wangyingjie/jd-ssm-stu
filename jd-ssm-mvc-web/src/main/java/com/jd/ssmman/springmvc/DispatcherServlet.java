@@ -6,7 +6,6 @@ package com.jd.ssmman.springmvc;
  * 模拟 Spring mvc DispatchServlet 实现方式
  */
 public class DispatcherServlet extends FrameWorkServlet {
-
     //属性通过 BeanWarpper 反射进行设置值
     private String servletName;
     private String servletDescribe;
@@ -17,8 +16,10 @@ public class DispatcherServlet extends FrameWorkServlet {
 
         ds.init();
 
+        System.out.println("=====================>" +  DispatcherServlet.class.getName() + ".ROOT");
         System.out.println(ds.getServletName() + "=====================" + ds.getServletDescribe());
     }
+
 
     /**
      * 初始化Spring mvc 的9大内置组件，使用的策略模式
