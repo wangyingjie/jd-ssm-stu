@@ -3,22 +3,34 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+
     <constant name="struts.devMode" value="${struts.devMode}"/>
+
     <constant name="struts.objectFactory" value="spring"/>
-    <constant name="struts.multipart.maxSize" value="20971520"/>
+
     <!--整体最大8M-->
+    <constant name="struts.multipart.maxSize" value="20971520"/>
+
     <constant name="struts.objectFactory.spring.autoWire" value="name"/>
+
     <constant name="struts.i18n.encoding" value="UTF-8"/>
-    <constant name="struts.custom.i18n.resources" value="message/message"/>
+
+    <!--<constant name="struts.custom.i18n.resources" value="message/message"/>-->
+    <!--默认会读取该配置文件-->
+    <!--<constant name="struts.velocity.configfile" value="velocity.properties"/>-->
+
     <!-- vm中引用到的第三方类加入白名单 -->
     <constant name="ognl.security.enabled" value="true"/>
+
     <constant name="ognl.security.class.whitelist"
               value="org.apache.commons.lang.StringUtils,org.apache.commons.lang.time.DateUtils"/>
 
     <package name="ssmBase" extends="struts-default">
         <result-types>
-            <result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult" default="true"/>
+            <!--可以单独在spring的配置文件中指定该bean-->
+            <result-type name="velocity"  class="org.apache.struts2.dispatcher.VelocityResult" default="true"/>
         </result-types>
         <interceptors>
             <!-- 解析cookie的interceptor -->
@@ -27,7 +39,7 @@
             <interceptor-stack name="strutsDefaultStack">
                 <interceptor-ref name="exception"/>
                 <interceptor-ref name="alias"/>
-                <interceptor-ref name="servletConfig"/>
+                <!--<interceptor-ref name="servletConfig"/>
                 <interceptor-ref name="i18n"/>
                 <interceptor-ref name="prepare"/>
                 <interceptor-ref name="chain"/>
@@ -47,7 +59,7 @@
                 </interceptor-ref>
                 <interceptor-ref name="workflow">
                     <param name="excludeMethods">input,back,cancel,browse</param>
-                </interceptor-ref>
+                </interceptor-ref>-->
             </interceptor-stack>
             <interceptor-stack name="ssmInterceptor">
                 <interceptor-ref name="strutsDefaultStack"/>
@@ -56,11 +68,8 @@
         </interceptors>
         <default-interceptor-ref name="ssmInterceptor"/>
         <global-results>
-            <result name="exception">/WEB-INF/vm/error.vm</result>
-            <result name="error">/WEB-INF/vm/error.vm</result>
-            <result name="toError">/WEB-INF/vm/order/error.vm</result>
-            <result name="input">/WEB-INF/vm/convertError.vm</result>
-            <!--<result name="login_error">/WEB-INF/vm/loginError.vm</result>-->
+            <result name="exception">WEB-INF/views/public/error.vm</result>
+            <result name="error">WEB-INF/views/public/error.vm</result>
             <result name="login" type="redirect">${loginUrl}</result>
         </global-results>
         <global-exception-mappings>
@@ -89,14 +98,14 @@
         </interceptors>
     </package>-->
 
-    <package name="json-noprotected-default" extends="ssmBase">
+    <!--<package name="json-noprotected-default" extends="ssmBase">
         <result-types>
             <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
         </result-types>
         <interceptors>
             <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
         </interceptors>
-    </package>
+    </package>-->
 
 
     <include file="struts-index.xml"/>

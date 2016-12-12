@@ -6,13 +6,18 @@
 <struts>
 
     <package name="index" extends="ssmBase" namespace="/">
-        <action name="index" class="com.jd.ssm.web.action.IndexController">
-            <result name="success">/WEB-INF/views/index.vm</result>
+
+        <!-- method  指定方法 -->
+        <action name="index" method="index" class="com.jd.ssm.web.action.IndexAction">
+            <!--此处 velocity 的声明在 struts.xml 中指定-->
+            <result name="success" type="velocity">/WEB-INF/views/index.vm</result>
             <result name="hello">/WEB-INF/views/hello.vm</result>
         </action>
-        <action name="ifreamVm" method="toIframVm"  class="com.jd.ssm.web.action.IndexController">
-            <result name="iframVm">/WEB-INF/vm/index-2new.vm</result>
+
+        <action name="welcome" class="com.jd.ssm.web.action.IndexAction">
+            <result name="success">/WEB-INF/views/index.vm</result>
         </action>
+
     </package>
 
 </struts>

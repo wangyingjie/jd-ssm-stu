@@ -11,6 +11,9 @@
     <!-- 属性文件读入 -->
     <import resource="spring-config-common.xml"/>
 
+    <!-- 属性文件读入 -->
+    <import resource="spring-config-web.xml"/>
+
 
 
 </beans>

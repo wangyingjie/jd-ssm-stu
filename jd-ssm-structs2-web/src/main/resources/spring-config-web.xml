@@ -11,6 +11,21 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 
+    <!--<bean name="velocityTools" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="stringUtils">
+                    <bean class="org.apache.commons.lang.StringUtils"/>
+                </entry>
+                <entry key="dateUtils">
+                    <bean class="org.apache.commons.lang.time.DateUtils"/>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>-->
+
+    <!--需要指定我们自定义的 VelocityResult 因为 Structs2 本身不支持布局-->
+    <bean class="org.apache.struts2.dispatcher.VelocityResult"/>
 
 
 </beans>

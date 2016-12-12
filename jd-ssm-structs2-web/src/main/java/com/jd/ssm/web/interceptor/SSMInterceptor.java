@@ -26,10 +26,10 @@ public class SSMInterceptor implements Interceptor {
     }
 
     @Override
-    public String intercept(ActionInvocation actionInvocation) throws Exception {
+    public String intercept(ActionInvocation invocation) throws Exception {
 
         log.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-        return null;
+        return invocation.invoke();
     }
 }

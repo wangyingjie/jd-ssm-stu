@@ -33,7 +33,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
                 @Override
                 public String resolveStringValue(String strVal) {
 
-                    System.out.println("strVal======================>" + strVal);
+                    //System.out.println("strVal======================>" + strVal);
 
                     if (strVal.contains("shit")) {
 

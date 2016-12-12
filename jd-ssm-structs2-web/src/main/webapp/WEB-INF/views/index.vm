@@ -7,19 +7,30 @@
     <title>一元抢宝后台</title>
 </head>
 
-<frameset rows="80,*" cols="*" frameborder="no" border="0" framespacing="0">
-    <frame src="topFrame" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame"/>
-    <frameset rows="*" cols="169,*" framespacing="0" frameborder="no" border="0">
-        <frame src="leftFrame?module=1" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame"
-               title="leftFrame"/>
-        <frame src="#" name="mainFrame" id="mainFrame" title="mainFrame"/>
-    </frameset>
-</frameset>
-<noframes>
     <body>
-
-            欢迎您来到一元抢宝后台管理系统!
-
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
+            欢迎您来到一元抢宝后台管理系统! <br/>
     </body>
-</noframes>
 </html>
