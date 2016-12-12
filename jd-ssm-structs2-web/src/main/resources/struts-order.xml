@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="order" extends="ssmBase" namespace="/order">
+        <!-- method  指定方法 -->
+        <action name="order_*" method="{1}" class="com.jd.ssm.web.action.OrderAction">
+            <!--此处 velocity 的声明在 struts.xml 中指定-->
+            <result name="save" type="velocity">/WEB-INF/views/order/order.vm</result>
+            <result name="list">/WEB-INF/views/order/list.vm</result>
+        </action>
+    </package>
+
+</struts>

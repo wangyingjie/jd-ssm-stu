@@ -6,7 +6,6 @@
 <struts>
 
     <package name="index" extends="ssmBase" namespace="/">
-
         <!-- method  指定方法 -->
         <action name="index" method="index" class="com.jd.ssm.web.action.IndexAction">
             <!--此处 velocity 的声明在 struts.xml 中指定-->
@@ -17,7 +16,6 @@
         <action name="welcome" class="com.jd.ssm.web.action.IndexAction">
             <result name="success">/WEB-INF/views/index.vm</result>
         </action>
-
     </package>
 
 </struts>
