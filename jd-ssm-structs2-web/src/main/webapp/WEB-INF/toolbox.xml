@@ -121,13 +121,11 @@
 </tool>
     
 <!--求属于哪个渠道的位运算-->
-<!--
-<tool>
+<!--<tool>
     <key>bitwise</key>
     <scope>application</scope>
     <class>com.jd.treasure.common.utils.BitWiseUtil</class>
-</tool>
--->
+</tool>-->
 
 
 <data type="string">

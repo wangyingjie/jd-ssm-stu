@@ -137,8 +137,23 @@
     </bean>
 
 
+    <!--
+        会把"/**" url,注册到SimpleUrlHandlerMapping的urlMap中,把对静态资源的访问由HandlerMapping
+        转到org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler处理并返回.
+        DefaultServletHttpRequestHandler使用就是各个Servlet容器自己的默认Servlet.
+    -->
+    <!-- 对静态资源文件的访问  方案一 （二选一） -->
+    <!--<mvc:default-servlet-handler/>-->
+
+    <!--
+        映射到ResourceHttpRequestHandler进行处理，
+        location指定静态资源的位置.可以是web application根目录下、jar包里面，这样可以把静态资源压缩到jar包中
+    -->
+    <!-- 对静态资源文件的访问  方案二 （二选一）-->
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
     <mvc:resources mapping="/fl/**" location="/WEB-INF/fl/" />
     <mvc:resources mapping="/img/**" location="/WEB-INF/img/" />
+
+
 </beans>

@@ -1,0 +1,139 @@
+#set($layout="layout/empty.vm")
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>man</title>
+    <script type="text/javascript" src="$!assetModule.forPath("/jdf/lib/jquery-1.6.4.js").build()"></script>
+    <link rel="stylesheet" type="text/css" href="$!assetModule.forPath("/pop-man/201007/skin/erpbase.css").build()" media="all" />
+    <script type="text/javascript" src="$!asseModule.forPath("/jdf/lib/jquery-1.6.4.js").build()"></script>
+</head>
+
+<body id="leftframe">
+<div id="popmenu"></div>
+<div id="control" class="control"></div>
+<script type="text/javascript">
+    (function(){
+        var jdMenu={
+            _m1:[
+                {
+                    href:"/item",
+                    text:"抢宝项管理",
+                    child:[]
+                },
+                {
+                    href:"/issue",
+                    text:"抢宝期管理",
+                    child:[]
+                },{
+                    href:"/item/add",
+                    text:"新建抢宝项",
+                    child:[]
+                },{
+                    href:"/spread",
+                    text:"推广管理",
+                    child:[]
+                }
+            ],
+            _m2:[
+                {
+                    href:"/order",
+                    text:"订单管理",
+                    child:[]
+                },
+                {
+                    href:"/sendaward",
+                    text:"派奖管理",
+                    child:[]
+                },
+                {
+                    href:"/order/confirmFordeliver",
+                    text:"手动确认妥投",
+                    child:[]
+                }
+            ], _m3:[
+                {
+                    href:"/vender",
+                    text:"商家管理",
+                    child:[]
+                } ,
+                {
+                    href:"/vender/toitemlist",
+                    text:"抢宝项商家管理",
+                    child:[]
+                }
+            ],
+            _m4:[
+                {
+                    href:"/messagemove/list/",
+                    text:"短信查询(ES)",
+                    child:[]
+                }
+            ],
+            _m12:[
+                {
+                    href:"/feedback/query",
+                    text:"用户反馈信息",
+                    child:[]
+                }
+            ]
+        };
+        var initMenu=function(obj){
+            parent.document.getElementsByTagName('frameset')[1].cols='169,*';
+            document.getElementById('popmenu').style.display="";
+            document.getElementById('control').className="control";
+            var html="";
+            for (var i=0;i<obj.length;i++){
+                var css=(i==0)?"curr":"";
+                html+="<dl class='"+ css +"'>";
+                html+="<dt><a href='"+ obj[i].href +"' target='mainFrame'>"+ obj[i].text +"</a></dt>";
+                /*html+="<dd>";
+for (var j=0;j<obj[i].child.length;j++){
+
+}
+html+="</dd>";*/
+                html+="</dl>";
+            }
+            document.getElementById("popmenu").innerHTML=html;
+            parent.mainFrame.location=obj[0].href;
+        }
+        var url=window.location.toString().match(/module=(\d+)/)[1];
+        switch (url){
+            case "1":
+                initMenu(jdMenu._m1);
+                break;
+            case "2":
+                initMenu(jdMenu._m2);
+                break;
+            case "3":
+                initMenu(jdMenu._m3);
+                break;
+            case "4":
+                initMenu(jdMenu._m4);
+                break;
+            case "12":
+                initMenu(jdMenu._m12);
+                break;
+            default:
+                initMenu(jdMenu._m1);
+                break;
+        }
+    })();
+</script>
+<script type="text/javascript">
+    (function(){
+        jQuery("#popmenu a").bind("click",function(){
+            jQuery("#popmenu .curr").removeClass("curr");
+            var index=jQuery("#popmenu a").index(this);
+            jQuery("#popmenu dl").eq(index).addClass("curr");
+        });
+        jQuery("#control").bind("click",function(){
+            parent.document.getElementsByTagName('frameset')[1].cols=(parent.document.getElementsByTagName('frameset')[1].cols=='10,*')?'169,*':'10,*';
+            document.getElementById('popmenu').style.display=(document.getElementById('popmenu').style.display=='none')?'':'none';
+            document.getElementById('control').className=(document.getElementById('control').className=='control')?'control switch':'control';
+        });
+    })()
+</script>
+</body>
+</html>

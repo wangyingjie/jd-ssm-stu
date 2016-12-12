@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="index" extends="ssmBase" namespace="/">
+        <action name="index" class="com.jd.ssm.web.action.IndexController">
+            <result name="success">/WEB-INF/views/index.vm</result>
+            <result name="hello">/WEB-INF/views/hello.vm</result>
+        </action>
+        <action name="ifreamVm" method="toIframVm"  class="com.jd.ssm.web.action.IndexController">
+            <result name="iframVm">/WEB-INF/vm/index-2new.vm</result>
+        </action>
+    </package>
+
+</struts>

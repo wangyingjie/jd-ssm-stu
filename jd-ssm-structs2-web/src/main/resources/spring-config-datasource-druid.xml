@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--主库数据源-->
+    <bean id="abstractTreasureMasterDataSourcePool" class="com.alibaba.druid.pool.DruidDataSource" abstract="true"  init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${treasure.admin.jdbc.driver}"/>
+        <property value="15000" name="maxWait"/>
+        <property value="true" name="useUnfairLock"/>
+        <property value="2" name="initialSize"/>
+        <property value="2" name="minIdle"/>
+        <property value="20" name="maxActive"/>
+        <property name="removeAbandoned" value="false" />
+        <property value="60000" name="timeBetweenEvictionRunsMillis"/>
+        <property value="180000" name="minEvictableIdleTimeMillis"/>
+        <property value="SELECT 'x'" name="validationQuery"/>
+        <property value="true" name="testWhileIdle"/>
+        <property value="false" name="testOnBorrow"/>
+        <property value="false" name="testOnReturn"/>
+        <property value="false" name="poolPreparedStatements"/>
+        <property value="-1" name="maxPoolPreparedStatementPerConnectionSize"/>
+        <property value="stat" name="filters"/>
+    </bean>
+
+    <!--主库配置-->
+    <bean id="treasureMasterDataSourcePool" parent="abstractTreasureMasterDataSourcePool" >
+        <property name="url" value="${treasure.admin.jdbc.url}"/>
+        <property name="username" value="${treasure.admin.jdbc.username}"/>
+        <property name="password" value="${treasure.admin.jdbc.password}"/>
+        <property name="name" value="jdtreasure_master"/>
+    </bean>
+
+    <!--主库数据源代理链接-->
+    <bean id="treasureMasterDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource" ref="treasureMasterDataSourcePool"/>
+    </bean>
+
+    <!--序列获取数据源-->
+    <bean id="sequenceDataSource" class="com.alibaba.druid.pool.DruidDataSource"  init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${sequence.jdbc.driver}"/>
+        <property name="url" value="${sequence.jdbc.url}"/>
+        <property name="username" value="${sequence.jdbc.username}"/>
+        <property name="password" value="${sequence.jdbc.password}"/>
+        <property value="15000" name="maxWait"/>
+        <property value="2" name="initialSize"/>
+        <property value="2" name="minIdle"/>
+        <property value="20" name="maxActive"/>
+        <property value="60000" name="timeBetweenEvictionRunsMillis"/>
+        <property value="180000" name="minEvictableIdleTimeMillis"/>
+        <property value="SELECT 'x'" name="validationQuery"/>
+        <property value="true" name="testWhileIdle"/>
+        <property value="false" name="testOnBorrow"/>
+        <property value="false" name="testOnReturn"/>
+        <property value="false" name="poolPreparedStatements"/>
+        <property value="-1" name="maxPoolPreparedStatementPerConnectionSize"/>
+        <property value="stat" name="filters"/>
+
+        <property name="proxyFilters">
+            <list>
+                <bean class="com.alibaba.druid.filter.stat.StatFilter">
+                    <property name="slowSqlMillis" value="500"/>
+                    <property name="logSlowSql" value="true"/>
+                </bean>
+            </list>
+        </property>
+
+        <property name="useUnfairLock" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+    </bean>
+
+    <tx:annotation-driven />
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+
+</beans>

@@ -6,13 +6,16 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>jd-ssmman-web</artifactId>
+    <artifactId>jd-ssm-structs2-web</artifactId>
     <packaging>war</packaging>
-    <name>jd-ssmman-web</name>
+    <name>jd-ssm-structs2-web</name>
 
     <properties>
         <erp.sso.version>1.1.1-SNAPSHOT</erp.sso.version>
+        <ognl.version>3.0.19</ognl.version>
+        <structs.version>2.3.15.1</structs.version>
     </properties>
+
 
     <dependencies>
         <dependency>
@@ -25,12 +28,6 @@
                     <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
-            <version>1.8.1</version>
         </dependency>
 
         <dependency>
@@ -54,15 +51,41 @@
             <version>2.4</version>
             <scope>provided</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-servlet-api</artifactId>
-            <version>7.0.37</version>
-        </dependency>-->
+
+        <!--structs2 核心jar包-->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+            <version>${structs.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-fileupload</groupId>
+                    <artifactId>commons-fileupload</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--structs2 插件-->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+            <version>${structs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-spring-plugin</artifactId>
+            <version>${structs.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ognl</groupId>
+            <artifactId>ognl</artifactId>
+            <version>${ognl.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>jd-ssmman-web</finalName>
+        <finalName>jd-ssm-structs2-web</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

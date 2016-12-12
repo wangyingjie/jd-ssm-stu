@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="${struts.devMode}"/>
+    <constant name="struts.objectFactory" value="spring"/>
+    <constant name="struts.multipart.maxSize" value="20971520"/>
+    <!--整体最大8M-->
+    <constant name="struts.objectFactory.spring.autoWire" value="name"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.custom.i18n.resources" value="message/message"/>
+    <!-- vm中引用到的第三方类加入白名单 -->
+    <constant name="ognl.security.enabled" value="true"/>
+    <constant name="ognl.security.class.whitelist"
+              value="org.apache.commons.lang.StringUtils,org.apache.commons.lang.time.DateUtils"/>
+
+    <package name="ssmBase" extends="struts-default">
+        <result-types>
+            <result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult" default="true"/>
+        </result-types>
+        <interceptors>
+            <!-- 解析cookie的interceptor -->
+            <interceptor name="resolveCookieInterceptor" class="com.jd.ssm.web.interceptor.SSMInterceptor"/>
+
+            <interceptor-stack name="strutsDefaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="multiselect"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                    <param name="excludeParams">dojo\..*,^struts\..*,.*\\u0023.*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+            </interceptor-stack>
+            <interceptor-stack name="ssmInterceptor">
+                <interceptor-ref name="strutsDefaultStack"/>
+                <interceptor-ref name="resolveCookieInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="ssmInterceptor"/>
+        <global-results>
+            <result name="exception">/WEB-INF/vm/error.vm</result>
+            <result name="error">/WEB-INF/vm/error.vm</result>
+            <result name="toError">/WEB-INF/vm/order/error.vm</result>
+            <result name="input">/WEB-INF/vm/convertError.vm</result>
+            <!--<result name="login_error">/WEB-INF/vm/loginError.vm</result>-->
+            <result name="login" type="redirect">${loginUrl}</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
+        </global-exception-mappings>
+    </package>
+
+    <!--session集中式系统接入-->
+    <!--<package name="ssm-default" extends="ssmBase">
+        <interceptors>
+            <interceptor name="passportTicketInterceptor" class="com.jd.passport.inteceptor.strut2.Strut2LoginInterceptor" />
+            <interceptor-stack name="chongzhiSecurityInterceptor">
+                <interceptor-ref name="ssmInterceptor"/>
+                <interceptor-ref name="passportTicketInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="chongzhiSecurityInterceptor"/>
+    </package>
+
+    <package name="json-protected-default" extends="ssm-default">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+    </package>-->
+
+    <package name="json-noprotected-default" extends="ssmBase">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+    </package>
+
+
+    <include file="struts-index.xml"/>
+
+</struts>
