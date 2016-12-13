@@ -109,5 +109,6 @@
 
 
     <include file="struts-index.xml"/>
+    <include file="struts-order.xml"/>
 
 </struts>

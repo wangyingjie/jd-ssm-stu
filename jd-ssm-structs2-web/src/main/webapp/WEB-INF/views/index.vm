@@ -9,28 +9,10 @@
 
     <body>
             欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
-            欢迎您来到一元抢宝后台管理系统! <br/>
+
+            <a href="http://localhost:8080/index.action"> http://localhost:8080/index.action </a> <br/><br/>
+            <a href="http://localhost:8080/order/order_save.action"> http://localhost:8080/order/order_save.action </a> <br/><br/>
+            <a href="http://localhost:8080/order/order_list.action"> http://localhost:8080/order/order_list.action </a> <br/><br/>
+
     </body>
 </html>
