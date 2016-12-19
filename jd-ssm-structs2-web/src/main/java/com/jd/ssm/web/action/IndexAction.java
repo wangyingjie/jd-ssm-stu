@@ -1,6 +1,7 @@
 package com.jd.ssm.web.action;
 
 
+import com.jd.ssm.user.User;
 import com.jd.ssm.web.base.BaseAction;
 
 /**
@@ -12,6 +13,9 @@ import com.jd.ssm.web.base.BaseAction;
  */
 public class IndexAction extends BaseAction {
 
+    private User user;
+
+    private String context = "HelloWorld";
 
     public String index(){
 
@@ -28,4 +32,19 @@ public class IndexAction extends BaseAction {
         return "success";
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
 }
