@@ -28,8 +28,22 @@ public class SSMInterceptor implements Interceptor {
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
 
-        log.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-        return invocation.invoke();
+        before();
+
+        String invoke = invocation.invoke();
+
+        after();
+        return invoke;
+    }
+
+    private void before() {
+
+        log.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    }
+
+    private void after() {
+
+        log.info("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
     }
 }
