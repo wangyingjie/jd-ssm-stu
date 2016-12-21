@@ -235,18 +235,18 @@
 
     <build>
         <!-- 打包指定配置文件 -->
-        <resources>
+        <!--<resources>
             <resource>
                 <directory>src/main/resource/</directory>
                 <includes>
                     <include>*/*.*</include>
-                    <!-- <include>*.*</include>-->
+                    &lt;!&ndash; <include>*.*</include>&ndash;&gt;
                 </includes>
-                <!--<excludes>
+                &lt;!&ndash;<excludes>
                     <exclude>*.xsd</exclude>
-                </excludes>-->
+                </excludes>&ndash;&gt;
             </resource>
-        </resources>
+        </resources>-->
 
         <plugins>
             <plugin>

@@ -2,26 +2,24 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
 
-
-    <context:component-scan base-package="com.jd.ssm*"/>
-
+    <context:component-scan base-package="com.jd.ssm"/>
 
     <!-- 属性文件读入 -->
     <import resource="spring-config-common.xml"/>
 
     <!--<import resource="test/spring-config-rmi-hessian.xml"/>-->
 
-    <import resource="test/spring-config-rmi-httpinvoker-server.xml"/>
+    <!--<import resource="test/spring-config-rmi-httpinvoker-server.xml"/>-->
 
-
-
-    <!--<import resource="spring-config-datasource-druid.xml" />-->
-
-    <!--<import resource="spring-config-dao.xml" />-->
+    <!--测试数据库的事务-->
+    <import resource="spring-config-datasource-druid.xml"/>
+    <import resource="spring-config-dao.xml"/>
 
     <!--<import resource="spring-config-util.xml" />-->
 
+    <!--<import resource="spring-config-web.xml"/>-->
 
 </beans>

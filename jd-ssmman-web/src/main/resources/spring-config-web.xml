@@ -10,9 +10,15 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-    <import resource="spring-config-authen.xml" />
-    <context:component-scan base-package="com.jd.ssm*"/>
+    <!-- todo: 注意 spring mvc 容器的配置会覆盖spring容器配置的 bean，解决方案是：spring mvc 容器只扫描 Controller 包下面的类，否则事务配置很可能就不起做用了 -->
+    <context:component-scan base-package="com.jd.ssmman.web"/>
 
+    <!--<import resource="spring-config-authen.xml" />-->
+
+    <!--<mvc:annotation-driven/>-->
+
+    <!-- 属性文件读入 -->
+    <import resource="spring-config-common.xml"/>
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 

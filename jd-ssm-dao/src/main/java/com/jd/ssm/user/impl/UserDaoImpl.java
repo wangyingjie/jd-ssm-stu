@@ -6,6 +6,7 @@ import com.jd.ssm.user.UserDao;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Types;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Map;
 /**
  * Created by wangyingjie1 on 2016/11/14.
  */
+//@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
     private JdbcTemplate jdbcTemplate;

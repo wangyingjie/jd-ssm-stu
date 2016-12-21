@@ -28,11 +28,12 @@
 
     <typeAliases>
         <typeAlias alias="User" type="com.jd.ssm.user.User"/>
+        <typeAlias alias="Student" type="com.jd.ssm.stu.Student"/>
     </typeAliases>
 
-    <typeHandlers>
-        <!--特殊的 javaType 与 jdbcType 的映射关系-->
-    </typeHandlers>
+    <!--特殊的 javaType 与 jdbcType 的映射关系-->
+    <!--<typeHandlers>
+    </typeHandlers>-->
 
     <!-- mybatis 结合Spring 数据源datasource 将由Spring来管理 -->
     <!--<environments default="development">
@@ -49,6 +50,7 @@
 
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
+        <mapper resource="sqlmap/StudentMapper.xml"/>
     </mappers>
 
 

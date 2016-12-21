@@ -8,8 +8,8 @@
         <property name="driverClassName" value="${treasure.admin.jdbc.driver}"/>
         <property value="15000" name="maxWait"/>
         <property value="true" name="useUnfairLock"/>
-        <property value="2" name="initialSize"/>
-        <property value="2" name="minIdle"/>
+        <property value="3" name="initialSize"/>
+        <property value="3" name="minIdle"/>
         <property value="20" name="maxActive"/>
         <property name="removeAbandoned" value="false" />
         <property value="60000" name="timeBetweenEvictionRunsMillis"/>
@@ -37,7 +37,7 @@
     </bean>
 
     <!--序列获取数据源-->
-    <bean id="sequenceDataSource" class="com.alibaba.druid.pool.DruidDataSource"  init-method="init" destroy-method="close">
+    <!--<bean id="sequenceDataSource" class="com.alibaba.druid.pool.DruidDataSource"  init-method="init" destroy-method="close">
         <property name="driverClassName" value="${sequence.jdbc.driver}"/>
         <property name="url" value="${sequence.jdbc.url}"/>
         <property name="username" value="${sequence.jdbc.username}"/>
@@ -67,9 +67,13 @@
 
         <property name="useUnfairLock" value="true"/>
         <property name="removeAbandoned" value="true"/>
-    </bean>
+    </bean>-->
 
-    <tx:annotation-driven />
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+    <!-- 事务管理器的注解解析器 -->
+    <tx:annotation-driven mode="proxy" transaction-manager="transactionManager" />
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="treasureMasterDataSource"/>
+    </bean>
 
 </beans>
