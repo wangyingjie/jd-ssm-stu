@@ -7,4 +7,6 @@ public interface StudentService {
 
     int save(Student stu);
 
+    int saveStuAndCourse(Student stu, Course course);
+
 }

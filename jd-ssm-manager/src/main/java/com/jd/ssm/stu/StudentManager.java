@@ -7,5 +7,7 @@ public interface StudentManager {
 
     int save(Student stu);
 
+    int saveStuAndCourse(Student stu, Course course);
+
     int update(long id);
 }

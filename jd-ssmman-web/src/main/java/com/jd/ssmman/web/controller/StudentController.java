@@ -1,6 +1,7 @@
 package com.jd.ssmman.web.controller;
 
 
+import com.jd.ssm.stu.Course;
 import com.jd.ssm.stu.Student;
 import com.jd.ssm.stu.StudentManager;
 import com.jd.ssm.stu.StudentService;
@@ -45,6 +46,26 @@ public class StudentController extends BaseController {
         studentService.save(student);
 
         return "index";
+    }
+
+
+    @RequestMapping("/saveStuAndCourse")
+    public String saveStuAndCourse() {
+
+        Student student = getStudent();
+
+        Course course = getCourse();
+
+        studentService.saveStuAndCourse(student, course);
+
+        return "index";
+    }
+
+    private Course getCourse() {
+        Course course = new Course();
+        course.setCourseName("野史");
+        course.setTeacher("易中天");
+        return course;
     }
 
     private Student getStudent() {

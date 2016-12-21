@@ -29,6 +29,7 @@
     <typeAliases>
         <typeAlias alias="User" type="com.jd.ssm.user.User"/>
         <typeAlias alias="Student" type="com.jd.ssm.stu.Student"/>
+        <typeAlias alias="Course" type="com.jd.ssm.stu.Course"/>
     </typeAliases>
 
     <!--特殊的 javaType 与 jdbcType 的映射关系-->
@@ -51,6 +52,7 @@
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
         <mapper resource="sqlmap/StudentMapper.xml"/>
+        <mapper resource="sqlmap/CourseMapper.xml"/>
     </mappers>
 
 

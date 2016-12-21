@@ -1,8 +1,6 @@
 package com.jd.ssm.stu.impl;
 
-import com.jd.ssm.stu.Student;
-import com.jd.ssm.stu.StudentManager;
-import com.jd.ssm.stu.StudentService;
+import com.jd.ssm.stu.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -23,5 +21,11 @@ public class StudentServiceImpl implements StudentService {
         System.out.println("studentManager================================>" + studentManager);
 
         return studentManager.save(stu);
+    }
+
+    @Override
+    public int saveStuAndCourse(Student stu, Course course) {
+
+        return studentManager.saveStuAndCourse(stu, course);
     }
 }

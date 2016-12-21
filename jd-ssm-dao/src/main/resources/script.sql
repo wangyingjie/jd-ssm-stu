@@ -23,3 +23,13 @@ create table t_student(
 	primary key(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
+
+-- 测试课程表
+create table t_course(
+	id  int(11)  not null auto_increment,
+	course_name varchar(255) default null,
+	teacher varchar(255) default null,
+	primary key(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+
+
