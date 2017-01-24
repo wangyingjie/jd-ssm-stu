@@ -11,5 +11,8 @@ public interface FormulaInter {
         System.out.println("so slow walk*****************");
         return "fast";
     }
-    
+
+    static String m3() {
+        return "Hello static method in Interface!";
+    }
 }

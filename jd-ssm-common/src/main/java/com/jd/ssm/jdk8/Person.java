@@ -7,6 +7,8 @@ public class Person {
 
     public String firstName;
     public String lastName;
+    public int age;
+    public Sex sex;
 
     public Person() {
     }
@@ -39,4 +41,26 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getSex() {
+        return 1;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
 }
+
+enum Sex {
+    MALE, FEMALE
+}
+
