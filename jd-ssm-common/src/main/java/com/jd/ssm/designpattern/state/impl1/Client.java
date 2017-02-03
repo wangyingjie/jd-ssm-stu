@@ -16,5 +16,6 @@ public class Client {
         s2.off();
         s2.on();
         s1.on();
+
     }
 }
