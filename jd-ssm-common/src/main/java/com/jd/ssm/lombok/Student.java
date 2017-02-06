@@ -14,11 +14,25 @@ public class Student {
     private String name;
     private int sex;
 
-    public void printLog(){
+    public void printLog() {
         log.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+        //log.debug(() -> "xxxx" + execute());
+
+    }
+
+    private String execute() {
+        return "";
+    }
+
+    public static void print() {
+        System.out.println("xxxxxxxxxxxxxxxx");
     }
 
     public static void main(String[] args) {
         log.info("");
+
+        Runnable print = Student::print;
+        print.run();
     }
 }
