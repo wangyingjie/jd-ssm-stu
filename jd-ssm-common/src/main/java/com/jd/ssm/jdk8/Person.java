@@ -10,6 +10,7 @@ import com.google.common.collect.Ordering;
  */
 public class Person {
 
+    public String id;
     public String firstName;
     public String lastName;
     public int age;
@@ -43,6 +44,13 @@ public class Person {
                 .result();
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
