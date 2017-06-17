@@ -24,9 +24,9 @@
             password="密码" -->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://192.168.147.90:3358/jdtreasure?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;allowMultiQueries=true"
-                userId="jdlottery"
-                password="jdlottery">
+                connectionURL="jdbc:mysql://xxxx?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;allowMultiQueries=true"
+                userId="xxx"
+                password="xxx">
         </jdbcConnection>
 
         <!-- Java数据类型处理器 -->
