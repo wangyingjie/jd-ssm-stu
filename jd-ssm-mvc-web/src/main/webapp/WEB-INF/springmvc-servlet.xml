@@ -6,6 +6,6 @@
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="com.jd.ssm*"/>
+    <context:component-scan base-package="com.jd.ssm"/>
 
 </beans>
