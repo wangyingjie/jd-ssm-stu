@@ -6,4 +6,8 @@ package com.jd.ssm.cache;
 public interface AccountService2 {
 
     Account getAccountByName(String accountName);
+
+    void sayHello(String world);
+
+    void sayHello3(String world);
 }

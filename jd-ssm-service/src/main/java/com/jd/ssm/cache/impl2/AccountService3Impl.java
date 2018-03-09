@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * Created by wangyingjie1 on 2016/12/22.
  */
 @Service("accountService2Impl")
-public class AccountService2Impl implements AccountService2 {
+public class AccountService3Impl implements AccountService2 {
 
-    private final Logger logger = LoggerFactory.getLogger(AccountService2Impl.class);
+    private final Logger logger = LoggerFactory.getLogger(AccountService3Impl.class);
 
     // 使用了一个缓存名叫 accountCache
     @Cacheable(value = "accountCache")
@@ -33,14 +33,15 @@ public class AccountService2Impl implements AccountService2 {
     }
 
     @Override
-    public void sayHello(String world) {
+    public void sayHello3(String world) {
 
     }
 
     @Override
-    public void sayHello3(String world) {
+    public void sayHello(String world) {
 
     }
+
 
     private Optional<Account> getFromDB(String accountName) {
 

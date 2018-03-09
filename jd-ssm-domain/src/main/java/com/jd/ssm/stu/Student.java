@@ -1,9 +1,11 @@
 package com.jd.ssm.stu;
 
+import java.io.Serializable;
+
 /**
  * Created by wangyingjie1 on 2016/12/20.
  */
-public class Student {
+public class Student implements Serializable {
 
     private int id;
     private String stuName;
