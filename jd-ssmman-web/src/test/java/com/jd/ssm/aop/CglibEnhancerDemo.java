@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 public class CglibEnhancerDemo {
 
     public static void main(String[] args) {
-        Enhancer enhancer  = new Enhancer();
+        Enhancer enhancer = new Enhancer();
 
         enhancer.setSuperclass(CglibEnhancerDemo.class);
         enhancer.setCallback(new MethodInterceptorImpl());
@@ -24,11 +24,11 @@ public class CglibEnhancerDemo {
         System.out.println(demo);
     }
 
-    public void test(){
+    public void test() {
         System.out.println("cglib test()");
     }
 
-    private static class MethodInterceptorImpl implements MethodInterceptor{
+    private static class MethodInterceptorImpl implements MethodInterceptor {
 
         @Override
         public Object intercept(Object obj, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {

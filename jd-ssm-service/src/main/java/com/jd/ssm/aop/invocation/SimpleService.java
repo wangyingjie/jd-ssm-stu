@@ -1,5 +1,9 @@
 package com.jd.ssm.aop.invocation;
 
+import sun.misc.ProxyGenerator;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -11,14 +15,14 @@ import static java.lang.reflect.Proxy.newProxyInstance;
  */
 public class SimpleService {
 
-    private SimpleHandler simpleHandler ;
-    private SimpleHandler simpleHandlerProxy ;
+    private SimpleHandler simpleHandler;
+    private SimpleHandler simpleHandlerProxy;
 
-    public SimpleService(){
+    public SimpleService() {
 
     }
 
-    public SimpleService(SimpleHandler simpleHandler){
+    public SimpleService(SimpleHandler simpleHandler) {
         this.simpleHandler = simpleHandler;
 
         // 注意：获取目标对象的接口  通用性更好
@@ -30,6 +34,26 @@ public class SimpleService {
         //this.simpleHandlerProxy = (SimpleHandler) newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class[]{SimpleHandler.class}, new SimpleInvocationHandler());
 
         this.simpleHandlerProxy = getProxy(interfaces);
+
+        //generateProxyClazz();
+    }
+
+    private void generateProxyClazz() {
+        try {
+            //通过反编译工具可以查看源代码
+            byte[] bytes = ProxyGenerator.generateProxyClass("$Proxy0", new Class[]{SimpleHandler.class});
+
+
+            String path = SimpleService.class.getResource("").getPath();
+            System.out.println("path================>" + path);
+
+            String fileName = path + "$Proxy0.class";
+            FileOutputStream os = new FileOutputStream(fileName);
+            os.write(bytes);
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private SimpleHandler getProxy(Class<?>[] interfaces) {
@@ -37,7 +61,7 @@ public class SimpleService {
     }
 
 
-    public void say(){
+    public void say() {
         simpleHandlerProxy.say();
     }
 
@@ -45,7 +69,7 @@ public class SimpleService {
         simpleHandlerProxy.smile();
     }
 
-    public boolean runFast(){
+    public boolean runFast() {
         return simpleHandlerProxy.runFast();
     }
 

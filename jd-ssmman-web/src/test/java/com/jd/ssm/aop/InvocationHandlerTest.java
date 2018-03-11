@@ -15,6 +15,8 @@ public class InvocationHandlerTest {
     @Test
     public void testProxySay() {
 
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
+
         SimpleHandlerImpl simpleHandler = new SimpleHandlerImpl();
 
         SimpleService simpleService = new SimpleService(simpleHandler);
