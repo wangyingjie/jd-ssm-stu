@@ -64,6 +64,41 @@
             <artifactId>tomcat-servlet-api</artifactId>
             <version>7.0.37</version>
         </dependency>-->
+        <dependency>
+            <groupId>com.jd</groupId>
+            <artifactId>jsf</artifactId>
+            <version>1.6.5</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jd.jmi</groupId>
+            <artifactId>jmi-trade-client</artifactId>
+            <version>1.2.3-SNAPSHOT</version>
+        </dependency>
+
+        <!--erp下单jar-->
+        <dependency>
+            <groupId>com.jd.trade.sdk</groupId>
+            <artifactId>trade-sdk-vertical-export</artifactId>
+            <version>0.1.3.2-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-simple</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <build>
