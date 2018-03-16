@@ -4,7 +4,7 @@ import com.jd.proxy.helper.Phone;
 import org.junit.Test;
 
 /**
- * @desc
+ * @desc  DecoratingClassLoader
  * @author: wangyingjie1
  * @date: ${date}
  */

@@ -1,6 +1,7 @@
 package com.jd.code;
 
 import javassist.*;
+import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -14,7 +15,8 @@ import java.util.Arrays;
 public class ExampleTest {
 
     //获取类的简单信息
-    public static void test01() throws Exception {
+    @Test
+    public void test01() throws Exception {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.get("com.jd.code.bean.Lion");
         //得到字节码
@@ -28,7 +30,8 @@ public class ExampleTest {
     }
 
     //新生成一个方法
-    public static void test02() throws Exception {
+    @Test
+    public void test02() throws Exception {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.get("com.jd.code.bean.Lion");
 
@@ -42,6 +45,9 @@ public class ExampleTest {
         cm.setBody("{return $1+$2;}");
         //cc.removeMethod(m) 删除一个方法
 
+        // 给方法添加异常
+        CtClass type = ClassPool.getDefault().get("java.io.IOException");
+        cm.addCatch("{ System.out.println($e); throw $e; }", type);
         cc.addMethod(cm);
 
         //通过反射调用方法
@@ -53,10 +59,12 @@ public class ExampleTest {
 
         System.out.println(result);
 
+        cc.writeFile("D:\\workspace_git_2\\jd-ssm-stu\\jd-ssmman-web\\src\\test\\java\\com\\jd\\code\\bean\\");
     }
 
     //修改已有的方法
-    public static void test03() throws Exception {
+    @Test
+    public void test03() throws Exception {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.get("com.jd.code.bean.Lion");
 
@@ -74,7 +82,8 @@ public class ExampleTest {
     }
 
     //修改已有属性
-    public static void test04() throws Exception {
+    @Test
+    public void test04() throws Exception {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.get("com.jd.code.bean.Lion");
 
@@ -99,7 +108,8 @@ public class ExampleTest {
     }
 
     //操作构造方法
-    public static void test05() throws Exception {
+    @Test
+    public void test05() throws Exception {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.get("com.jd.code.bean.Lion");
 
@@ -109,7 +119,8 @@ public class ExampleTest {
         }
     }
 
-    public static void test06() throws Exception  {
+    @Test
+    public void test06() throws Exception  {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.makeClass("bean.User");
 
@@ -138,13 +149,5 @@ public class ExampleTest {
 
     }
 
-    public static void main(String[] args) throws Exception {
-        // test01();
-        // test02();
-        // test03();
-        // test04();
-        // test05();
-        test06();
-    }
 
 }
