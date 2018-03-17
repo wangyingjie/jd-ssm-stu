@@ -3,7 +3,7 @@ package com.jd.sync;
 import java.util.concurrent.*;
 
 /**
- * @desc
+ * @desc   设计模式的文档：  https://en.wikipedia.org/wiki/Observer_pattern
  * @author: wangyingjie1
  * @date: ${date}
  */
@@ -28,10 +28,5 @@ public class JDThreadPoolExecutor extends ThreadPoolExecutor {
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
         super.beforeExecute(t, r);
-    }
-
-    @Override
-    protected void afterExecute(Runnable r, Throwable t) {
-        super.afterExecute(r, t);
     }
 }
