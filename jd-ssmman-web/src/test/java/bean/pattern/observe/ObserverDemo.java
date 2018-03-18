@@ -1,5 +1,9 @@
 package bean.pattern.observe;
 
+import org.springframework.util.StreamUtils;
+
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.atomic.LongAdder;
@@ -14,6 +18,15 @@ public class ObserverDemo {
     public static void main(String[] args) {
 
         LongAdder longAdder = new LongAdder();
+        try {
+            String string = StreamUtils.copyToString(null, Charset.forName("UTF-8"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+
         for (int i = 0; i < 10; i++) {
             longAdder.add(10);
         }
